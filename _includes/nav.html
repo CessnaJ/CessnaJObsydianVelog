@@ -18,7 +18,7 @@
   <ul>
     {% for note in site.notes %} {% if note.path | starts_with_number %}
     <li class="dropdown">
-      <a href="#" class="dropbtn">{{ note.title }}</a>
+      <a href="{{ note.url }}" class="dropbtn">{{ note.title }}</a>
       <div class="dropdown-content">
         {% for file in note.files %} {% if file.extname == ".md" %}
         <a href="{{ file.url }}">{{ file.title }}</a>
