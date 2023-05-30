@@ -1,36 +1,8 @@
-<!-- <div>
-    <a class="internal-link" href="{{ site.baseurl }}/"><b>{{ site.title }}</b></a>
-</div> -->
-
 <nav>
   <ul>
-    {% for folder, contents in site.data.notes_structure.notes %}
+    {% for note in site.notes %}
     <li>
-      {{folder}}
-      <ul>
-        {% for item in contents %} {% if item is iterable %} {% for subfolder,
-        subfiles in item %}
-        <li>
-          {{subfolder}}
-          <ul>
-            {% for subfile in subfiles %}
-            <li>
-              <a
-                href="{{ site.baseurl }}/_notes/{{folder}}/{{subfolder}}/{{subfile}}"
-                >{{subfile | remove: ".md"}}</a
-              >
-            </li>
-            {% endfor %}
-          </ul>
-        </li>
-        {% endfor %} {% else %}
-        <li>
-          <a href="{{ site.baseurl }}/_notes/{{folder}}/{{item}}"
-            >{{item | remove: ".md"}}</a
-          >
-        </li>
-        {% endif %} {% endfor %}
-      </ul>
+      <a href="{{ note.url }}">{{ note.title }}</a>
     </li>
     {% endfor %}
   </ul>
