@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <a class="internal-link" href="{{ site.baseurl }}/"
     ><b>{{ site.title }}</b></a
   >
@@ -8,5 +8,27 @@
       <a href="{{ note.url }}">{{ note.title }}</a>
     </li>
     {% endfor %}
+  </ul>
+</nav> -->
+
+<nav>
+  <a class="internal-link" href="{{ site.baseurl }}/"
+    ><b>{{ site.title }}</b></a
+  >
+  <ul>
+    {% for note in site.notes %} {% if note.path matches "^\\d" %}
+    <li class="dropdown">
+      <a href="#" class="dropbtn">{{ note.title }}</a>
+      <div class="dropdown-content">
+        {% for file in note.files %} {% if file.extname == ".md" %}
+        <a href="{{ file.url }}">{{ file.title }}</a>
+        {% endif %} {% endfor %}
+      </div>
+    </li>
+    {% else %}
+    <li>
+      <a href="{{ note.url }}">{{ note.title }}</a>
+    </li>
+    {% endif %} {% endfor %}
   </ul>
 </nav>
