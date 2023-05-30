@@ -1,3 +1,34 @@
-<div>
-    <a class="internal-link" href="{{ site.baseurl }}/"><b>{{ site.title }}</b></a>
-</div>
+<nav>
+  testfor
+  <ul>
+    {% for folder, contents in site.data.notes_structure.notes %}
+    <li>
+      {{folder}}
+      <ul>
+        {% for item in contents %} {% if item[0] %} {% for subfolder, subfiles
+        in item %}
+        <li>
+          {{subfolder}}
+          <ul>
+            {% for subfile in subfiles %}
+            <li>
+              <a
+                href="{{ site.baseurl }}/{{folder}}/{{subfolder}}/{{subfile | remove: '.md'}}"
+                >{{subfile | remove: ".md"}}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %} {% else %}
+        <li>
+          <a href="{{ site.baseurl }}/{{folder}}/{{item | remove: '.md'}}"
+            >{{item | remove: ".md"}}</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
